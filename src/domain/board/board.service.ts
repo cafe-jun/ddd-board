@@ -1,4 +1,6 @@
 import { injectable } from "inversify";
+import { provide } from "inversify-binding-decorators";
+import TYPES from "../../constrant/types";
 
 @injectable()
 export class BoardService {

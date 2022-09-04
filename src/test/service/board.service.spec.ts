@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import "mocha";
 import { expect } from "chai";
-import { BoardService } from "../../model/board/board.service";
+import { BoardService } from "../../domain/board/board.service";
 
 describe("BoardService", () => {
   it("should give new Board `", () => {
