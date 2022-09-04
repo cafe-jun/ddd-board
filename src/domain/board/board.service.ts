@@ -1,13 +1,21 @@
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
 import { provide } from "inversify-binding-decorators";
+import { Repository } from "typeorm";
 import TYPES from "../../constrant/types";
+import { Board } from "../../entitiy/board.entity";
+import { BoardRepository } from "./board.repository";
 
 @injectable()
 export class BoardService {
-  constructor() {}
+  constructor(
+    @inject(TYPES.Repositories.Domain.Board)
+    private boardRepository: Repository<Board>
+  ) {}
 
-  public getBoard(): string {
-    return "getBoard";
+  public async getBoard(): Promise<Board[]> {
+    console.log("service here");
+    const data = await this.boardRepository.find();
+    return data;
   }
   public search(): string {
     return "search";

@@ -1,23 +1,23 @@
-import { AsyncContainerModule } from "inversify";
+import { BoardController } from "./../domain/board/board.controller";
+import { AsyncContainerModule, interfaces } from "inversify";
 import { Repository } from "typeorm";
-// import { Movie } from "./entities/movie";
-import { getDataSource } from "./typeorm.config";
-// import { getRepository } from "./repositories/movie_repository";
+import { getDbConnection } from "./typeorm.config";
 import TYPES from "../constrant/types";
 import { BoardService } from "../domain/board/board.service";
 import { Board } from "../entitiy/board.entity";
-import { getRepository } from "../common/cts.repoistory";
+import TAGS from "../constrant/tags";
+import { getBoardRepository } from "../domain/board/board.repository";
+import { IBoardRepository } from "../domain/board/interface";
 
 export const bindings = new AsyncContainerModule(async (bind) => {
-  await getDataSource()
-    .initialize()
-    .then(() => console.log("database connection"))
-    .catch((error) => console.error(error));
-
-  bind<BoardService>(TYPES.BoardService).to(BoardService);
-  bind<Repository<Board>>(TYPES.BoardRepository)
+  await getDbConnection();
+  await require("../domain/board/board.controller");
+  bind<BoardService>(TYPES.Services.Application.Board)
+    .to(BoardService)
+    .inSingletonScope();
+  bind<IBoardRepository>(TYPES.Repositories.Domain.Board)
     .toDynamicValue(() => {
-      return getRepository(Board);
+      return getBoardRepository();
     })
-    .inRequestScope();
+    .inSingletonScope();
 });

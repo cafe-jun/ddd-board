@@ -16,11 +16,14 @@ import { BoardService } from "./board.service";
 import TYPES from "../../constrant/types";
 @controller("/board")
 export class BoardController implements interfaces.Controller {
-  constructor(@inject(TYPES.BoardService) private boardService: BoardService) {}
+  constructor(
+    @inject(TYPES.Services.Application.Board) private boardService: BoardService
+  ) {}
 
   @httpGet("/")
-  public pagin(): string {
-    return this.boardService.getBoardList();
+  public pagin() {
+    // return "success";
+    return this.boardService.getBoard();
   }
   @httpGet("/:id")
   public detail(): string {

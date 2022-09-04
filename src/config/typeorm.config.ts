@@ -1,9 +1,9 @@
-import { DataSource } from "typeorm";
+import { Connection, createConnection } from "typeorm";
 import { Board } from "../entitiy/board.entity";
 
 export const SalinEntity = [Board];
 
-export function getDataSource() {
+export async function getDbConnection() {
   const DATABASE_HOST: string = process.env.DATABASE_HOST || "localhost";
   const DATABASE_USER: string = process.env.DATABASE_USER || "";
   const DATABASE_PORT: number = Number(process.env.DATABASE_PORT) || 3306;
@@ -14,16 +14,15 @@ export function getDataSource() {
    *
    */
 
-  const dataSource = new DataSource({
+  return await createConnection({
     type: "mysql",
     host: DATABASE_HOST,
     port: DATABASE_PORT,
     username: DATABASE_USER,
     password: DATABASE_PASSWORD,
     database: DATABASE_DB,
-    entities: SalinEntity,
+    entities: [Board],
     synchronize: true,
     logging: true,
   });
-  return dataSource;
 }
