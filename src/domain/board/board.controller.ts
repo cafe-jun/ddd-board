@@ -5,15 +5,18 @@ import {
   httpGet,
   httpPost,
   httpDelete,
-  request,
-  queryParam,
-  response,
-  requestParam,
   httpPut,
+  queryParam,
+  requestBody,
+  request,
+  response,
 } from "inversify-express-utils";
 import { injectable, inject } from "inversify";
 import { BoardService } from "./board.service";
 import TYPES from "../../constrant/types";
+import { CreateBoardDto } from "../dto/create-board.dto";
+import { ICreateBoardDto } from "./interface";
+import { DtoValidatorMiddleware } from "../../middleware/dto-validator.middleware";
 @controller("/board")
 export class BoardController implements interfaces.Controller {
   constructor(
@@ -30,13 +33,15 @@ export class BoardController implements interfaces.Controller {
     return this.boardService.getDetailBoard();
   }
   @httpPost("/")
-  public add(): string {
-    return this.boardService.addBoard();
+  public createBoard(@requestBody() param: ICreateBoardDto) {
+    DtoValidatorMiddleware(CreateBoardDto, true);
+    console.log(param);
+    // return this.boardService.addBoard();
   }
 
   @httpPut("/")
-  public update(): string {
-    return this.boardService.updateBoard();
+  public update(): void {
+    // return this.boardService.updateBoard();
   }
 
   @httpDelete("/")

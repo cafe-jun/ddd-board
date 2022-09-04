@@ -12,3 +12,8 @@ export interface IBoard {
 export interface IBoardRepository extends IRepository<IBoard> {
   get(id: object | string | number, options?: any): Promise<IBoard>;
 }
+
+export interface ICreateBoardDto {
+  title: string;
+  description: string;
+}

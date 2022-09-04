@@ -9,7 +9,7 @@ import { BoardRepository } from "./board.repository";
 export class BoardService {
   constructor(
     @inject(TYPES.Repositories.Domain.Board)
-    private boardRepository: Repository<Board>
+    private boardRepository: BoardRepository
   ) {}
 
   public async getBoard(): Promise<Board[]> {
@@ -20,11 +20,13 @@ export class BoardService {
   public search(): string {
     return "search";
   }
-  public addBoard(): string {
-    return "addBoard";
+  public async addBoard(dto: Board): Promise<Board> {
+    await this.boardRepository.addRow(dto);
+    return dto;
   }
-  public updateBoard(): string {
-    return "updateBoard";
+  public async updateBoard(dto: Board): Promise<Board> {
+    await this.boardRepository.updateRow(dto);
+    return dto;
   }
   public deleteBoard(): string {
     return "deleteBoard";

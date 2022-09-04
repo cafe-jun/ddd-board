@@ -51,10 +51,16 @@ import { bindings } from "./config/inversify.config";
   const port = 3000;
   const container = new Container();
   await container.loadAsync(bindings);
-  const app = new InversifyExpressServer(container);
-  const server = app.build();
+  const server = new InversifyExpressServer(container);
+  server.setConfig((app) => {
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    // node 기본적인 보안 -> helmet 추가
+    app.use(helmet());
+  });
+  const bootstrap = server.build();
 
-  server.listen(port, () => {
+  bootstrap.listen(port, () => {
     console.log(`Server running at http://127.0.0.1:${port}/`);
   });
 })();
