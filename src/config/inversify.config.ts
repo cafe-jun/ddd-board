@@ -6,7 +6,7 @@ import { getDataSource } from "./typeorm.config";
 import TYPES from "../constrant/types";
 import { BoardService } from "../domain/board/board.service";
 import { Board } from "../entitiy/board.entity";
-import { getRepository } from "../domain/board/board.repository";
+import { getRepository } from "../common/cts.repoistory";
 
 export const bindings = new AsyncContainerModule(async (bind) => {
   await getDataSource()
@@ -17,7 +17,7 @@ export const bindings = new AsyncContainerModule(async (bind) => {
   bind<BoardService>(TYPES.BoardService).to(BoardService);
   bind<Repository<Board>>(TYPES.BoardRepository)
     .toDynamicValue(() => {
-      return getRepository();
+      return getRepository(Board);
     })
     .inRequestScope();
 });

@@ -1,6 +1,8 @@
 import { DataSource } from "typeorm";
 import { Board } from "../entitiy/board.entity";
 
+export const SalinEntity = [Board];
+
 export function getDataSource() {
   const DATABASE_HOST: string = process.env.DATABASE_HOST || "localhost";
   const DATABASE_USER: string = process.env.DATABASE_USER || "";
@@ -11,6 +13,7 @@ export function getDataSource() {
    *  The database connection dataSource Type not supported
    *
    */
+
   const dataSource = new DataSource({
     type: "mysql",
     host: DATABASE_HOST,
@@ -18,7 +21,7 @@ export function getDataSource() {
     username: DATABASE_USER,
     password: DATABASE_PASSWORD,
     database: DATABASE_DB,
-    entities: [Board],
+    entities: SalinEntity,
     synchronize: true,
     logging: true,
   });
