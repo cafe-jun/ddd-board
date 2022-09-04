@@ -1,3 +1,4 @@
+import { Board } from "./../../entitiy/board.entity";
 import { IRepository } from "../../common/interface";
 
 export interface IBoard {
@@ -16,4 +17,5 @@ export interface IBoardRepository extends IRepository<IBoard> {
 export interface ICreateBoardDto {
   title: string;
   description: string;
+  toEntity(): Board;
 }

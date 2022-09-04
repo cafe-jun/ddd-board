@@ -10,13 +10,15 @@ import {
   requestBody,
   request,
   response,
+  requestParam,
 } from "inversify-express-utils";
 import { injectable, inject } from "inversify";
 import { BoardService } from "./board.service";
 import TYPES from "../../constrant/types";
 import { CreateBoardDto } from "../dto/create-board.dto";
 import { ICreateBoardDto } from "./interface";
-import { DtoValidatorMiddleware } from "../../middleware/dto-validator.middleware";
+import { DtoBodyValidatorMiddleware } from "../../middleware/dto-body-validator.middleware";
+import { ParamPaserIntMiddleware } from "../../middleware/param-parserInt.middleware";
 @controller("/board")
 export class BoardController implements interfaces.Controller {
   constructor(
@@ -32,15 +34,19 @@ export class BoardController implements interfaces.Controller {
   public detail(): string {
     return this.boardService.getDetailBoard();
   }
-  @httpPost("/")
-  public createBoard(@requestBody() param: ICreateBoardDto) {
-    DtoValidatorMiddleware(CreateBoardDto, true);
-    console.log(param);
-    // return this.boardService.addBoard();
+
+  @httpPost("/", DtoBodyValidatorMiddleware(CreateBoardDto))
+  public createBoard(@requestBody() params: ICreateBoardDto) {
+    return this.boardService.addBoard(params.toEntity());
   }
 
-  @httpPut("/")
-  public update(): void {
+  @httpPut("/:id", ParamPaserIntMiddleware("id"))
+  public update(
+    @requestParam("id") id: string,
+    @requestBody() params: ICreateBoardDto
+  ): void {
+    console.log(typeof id);
+    console.log(params);
     // return this.boardService.updateBoard();
   }
 

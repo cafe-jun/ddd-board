@@ -21,8 +21,8 @@ export class BoardService {
     return "search";
   }
   public async addBoard(dto: Board): Promise<Board> {
-    await this.boardRepository.addRow(dto);
-    return dto;
+    const result = await this.boardRepository.addRow(dto);
+    return { id: result.identifiers[0].id, ...dto };
   }
   public async updateBoard(dto: Board): Promise<Board> {
     await this.boardRepository.updateRow(dto);

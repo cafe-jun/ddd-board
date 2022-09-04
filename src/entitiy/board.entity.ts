@@ -30,4 +30,11 @@ export class Board {
   //   @OneToOne(() => Photo)
   //   @JoinColumn()
   //   photo: Photo;
+
+  static toEntity(title: string, description: string): Board {
+    const board = new Board();
+    board.title = title;
+    board.description = description;
+    return board;
+  }
 }

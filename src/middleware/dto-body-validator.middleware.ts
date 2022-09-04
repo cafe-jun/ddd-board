@@ -2,7 +2,8 @@ import { plainToInstance } from "class-transformer";
 import { validateOrReject, ValidationError } from "class-validator";
 import { NextFunction, Request, Response } from "express";
 
-export const DtoValidatorMiddleware = (
+// skipMissingProperties 인자는 properties 가 없을경우 체크하지 않음
+export const DtoBodyValidatorMiddleware = (
   type: any,
   skipMissingProperties = false
 ) => {
@@ -20,12 +21,10 @@ export const DtoValidatorMiddleware = (
             ...(Object as any).values(errors.constraints)
           );
         });
-        return res
-          .status(400)
-          .json({
-            name: "ValidationErrorException",
-            message: errorsMessageArray,
-          });
+        return res.status(400).json({
+          name: "ValidationErrorException",
+          message: errorsMessageArray,
+        });
       });
   };
 };
