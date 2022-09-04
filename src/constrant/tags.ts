@@ -1,5 +1,5 @@
 const TAGS = {
-  FooController: "FooController",
+  BoardController: "BoardController",
 };
 
 export default TAGS;

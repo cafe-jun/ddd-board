@@ -1,12 +1,11 @@
 import "reflect-metadata";
-import { FooController } from "./model/board/foo.controller";
 import express, { Request, Response, NextFunction } from "express";
 import { Container } from "inversify";
 import { InversifyExpressServer, TYPE } from "inversify-express-utils";
 import * as bodyParser from "body-parser";
-import { FooService } from "./model/board/foo.service";
+import { BoardService } from "./model/board/board.service";
+import "./model/board/board.controller";
 import TYPES from "./constrant/types";
-import "./model/board/foo.controller";
 
 export class Server {
   private app: express.Application;
@@ -16,7 +15,7 @@ export class Server {
 
   constructor() {
     this.container = new Container();
-    this.container.bind<FooService>(TYPES.FooService).to(FooService);
+    this.container.bind<BoardService>(TYPES.BoardService).to(BoardService);
 
     this.server = new InversifyExpressServer(this.container);
     this.server.setConfig((app) => {

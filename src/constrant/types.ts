@@ -1,5 +1,5 @@
 const TYPES = {
-  FooService: Symbol.for("FooService"),
+  BoardService: Symbol.for("BoardService"),
 };
 
 export default TYPES;

@@ -11,14 +11,14 @@ import {
   requestParam,
 } from "inversify-express-utils";
 import { injectable, inject } from "inversify";
-import { FooService } from "./foo.service";
+import { BoardService } from "./board.service";
 import TYPES from "../../constrant/types";
-@controller("/")
-export class FooController implements interfaces.Controller {
-  constructor(@inject(TYPES.FooService) private fooService: FooService) {}
+@controller("/board")
+export class BoardController implements interfaces.Controller {
+  constructor(@inject(TYPES.BoardService) private boardService: BoardService) {}
 
-  @httpGet("foo")
+  @httpGet("/")
   public getFoo(): string {
-    return this.fooService.getFoo();
+    return this.boardService.getBoard();
   }
 }

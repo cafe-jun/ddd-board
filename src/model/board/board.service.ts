@@ -1,10 +1,10 @@
 import { injectable } from "inversify";
 
 @injectable()
-export class FooService {
+export class BoardService {
   constructor() {}
 
-  getFoo(): string {
+  public getBoard(): string {
     return "fooService ";
   }
 }
