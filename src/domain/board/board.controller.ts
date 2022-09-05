@@ -16,9 +16,9 @@ import { injectable, inject } from "inversify";
 import { BoardService } from "./board.service";
 import TYPES from "../../constrant/types";
 import { CreateBoardDto } from "../dto/create-board.dto";
-import { ICreateBoardDto } from "./interface";
+import { ICreateBoardDto, IUpdateBoardDto } from "./interface";
 import { DtoBodyValidatorMiddleware } from "../../middleware/dto-body-validator.middleware";
-import { ParamPaserIntMiddleware } from "../../middleware/param-parserInt.middleware";
+import { GetByIdParams, IGetByIdParams } from "../../common/get-by.params";
 @controller("/board")
 export class BoardController implements interfaces.Controller {
   constructor(
@@ -39,15 +39,16 @@ export class BoardController implements interfaces.Controller {
   public createBoard(@requestBody() params: ICreateBoardDto) {
     return this.boardService.addBoard(params.toEntity());
   }
-
-  @httpPut("/:id", ParamPaserIntMiddleware("id"))
+  @httpPut("/:id", DtoBodyValidatorMiddleware(CreateBoardDto))
   public update(
-    @requestParam("id") id: string,
-    @requestBody() params: ICreateBoardDto
-  ): void {
-    console.log(typeof id);
-    console.log(params);
-    // return this.boardService.updateBoard();
+    // Param 으로 받기
+    //https://github.com/inversify/InversifyJS/issues/936
+    @requestParam("id") param: IGetByIdParams,
+    @requestBody() boardDto: IUpdateBoardDto,
+    res: express.Response
+  ) {
+    boardDto.setBoardId(param.ID);
+    return this.boardService.updateBoard(boardDto.toEntity());
   }
 
   @httpDelete("/")

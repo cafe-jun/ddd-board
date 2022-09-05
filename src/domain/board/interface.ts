@@ -19,3 +19,10 @@ export interface ICreateBoardDto {
   description: string;
   toEntity(): Board;
 }
+export interface IUpdateBoardDto {
+  id: number;
+  title: string;
+  description: string;
+  toEntity(): Board;
+  setBoardId(id: number): void;
+}
