@@ -9,7 +9,7 @@ import { buildProviderModule } from "inversify-binding-decorators";
 // import { bindings } from "./config/inversify.config";
 import helmet from "helmet";
 import * as dotenv from "dotenv";
-import { bindings } from "./config/inversify.config";
+import { bindings } from "./ioc/inversify.config";
 // export class Server {
 //   private app: express.Application;
 //   private PORT: number = Number(process.env.PORT) || 3000;

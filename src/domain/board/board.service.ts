@@ -29,7 +29,7 @@ export class BoardService {
     return dto;
   }
   public deleteBoard(): string {
-    return "deleteBoard";
+    return ;
   }
   public getBoardList(): string {
     return "getBoardList";
