@@ -58,6 +58,7 @@ export class BoardRepository extends Repository<IBoard> {
       .getMany();
   }
 }
+
 export function getBoardRepository() {
   const conn = getConnection();
   return conn.getCustomRepository(BoardRepository);

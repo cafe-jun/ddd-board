@@ -1,6 +1,7 @@
 import { inject, injectable } from "inversify";
 import { provide } from "inversify-binding-decorators";
-import { Repository } from "typeorm";
+import { NotFoundResult } from "inversify-express-utils/lib/results";
+import { EntityNotFoundError, Repository } from "typeorm";
 import TYPES from "../../constrant/types";
 import { Board } from "../../entitiy/board.entity";
 import { BoardRepository } from "./board.repository";
@@ -28,13 +29,23 @@ export class BoardService {
     await this.boardRepository.updateRow(dto);
     return dto;
   }
-  public deleteBoard(): string {
-    return ;
+  public async deleteBoard(id: number): Promise<string> {
+    await this.boardRepository.deleteRow(id);
+    return "success";
   }
-  public getBoardList(): string {
-    return "getBoardList";
+  public async getBoardList(): Promise<Board[]> {
+    const boards = await this.boardRepository.find();
+    return boards;
   }
-  public getDetailBoard(): string {
-    return "getDetailBoard";
+  public async getDetailBoard(id: number): Promise<Board> {
+    try {
+      const board = await this.boardRepository.getById(id);
+      if (!board) {
+        throw new NotFoundResult("board By id not found row");
+      }
+      return board;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
