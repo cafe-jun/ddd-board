@@ -44,7 +44,7 @@ export class BoardRepository extends Repository<IBoard> {
   async deleteRow(id: number): Promise<DeleteResult> {
     return this.softDelete({ id });
   }
-  async getById(id: number): Promise<IGetBoardResult> {
+  async getById(id: number): Promise<Board> {
     return createQueryBuilder()
       .select(["board.id", "board.title", "board.description"])
       .from(Board, "board")

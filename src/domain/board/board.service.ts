@@ -40,9 +40,6 @@ export class BoardService {
   public async getDetailBoard(id: number): Promise<Board> {
     try {
       const board = await this.boardRepository.getById(id);
-      if (!board) {
-        throw new NotFoundResult("board By id not found row");
-      }
       return board;
     } catch (error) {
       console.error(error);
