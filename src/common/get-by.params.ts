@@ -1,9 +1,5 @@
 import { IsNumberString } from "class-validator";
-
-export interface IGetByIdParams {
-  id: string;
-  get ID(): number;
-}
+import { IGetByIdParams } from "./interface";
 
 export class GetByIdParams implements IGetByIdParams {
   @IsNumberString()

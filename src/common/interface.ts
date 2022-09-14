@@ -22,3 +22,8 @@ export interface IRepository<T> {
   findOne(params: any): Promise<T>;
   save(data: T): Promise<T>;
 }
+
+export interface IGetByIdParams {
+  id: string;
+  get ID(): number;
+}
