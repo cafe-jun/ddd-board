@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import "mocha";
 import { expect } from "chai";
-import { BoardController } from "../../domain/board/board.controller";
+import { BoardController } from "../../infrastructure/controller/board.controller";
 import { BoardService } from "../../domain/board/board.service";
 
 describe("BoardController", () => {
