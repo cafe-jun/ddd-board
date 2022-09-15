@@ -8,7 +8,7 @@ import {
   Repository,
   UpdateResult,
 } from "typeorm";
-import { Board } from "../../entitiy/board.entity";
+import { Board } from "./board";
 
 interface IGetBoardResult {
   id: number;

@@ -1,6 +1,6 @@
 import { ICreateBoardDto } from "./../board/interface";
 import { IsNotEmpty, IsString } from "class-validator";
-import { Board } from "../../entitiy/board.entity";
+import { Board } from "../board/board";
 
 export class CreateBoardDto implements ICreateBoardDto {
   @IsString({ always: true })

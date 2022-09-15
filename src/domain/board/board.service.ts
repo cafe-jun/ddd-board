@@ -3,7 +3,7 @@ import { provide } from "inversify-binding-decorators";
 import { NotFoundResult } from "inversify-express-utils/lib/results";
 import { EntityNotFoundError, Repository } from "typeorm";
 import TYPES from "../../constrant/types";
-import { Board } from "../../entitiy/board.entity";
+import { Board } from "./board";
 import { BoardRepository } from "./board.repository";
 
 @injectable()

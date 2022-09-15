@@ -1,5 +1,5 @@
 import { Connection, createConnection } from "typeorm";
-import { Board } from "../entitiy/board.entity";
+import { Board } from "../domain/board/board";
 
 export const SalinEntity = [Board];
 

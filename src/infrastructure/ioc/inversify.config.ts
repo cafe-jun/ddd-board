@@ -1,10 +1,10 @@
 import { AsyncContainerModule } from "inversify";
-import { getDbConnection } from "../config/typeorm.config";
-import TYPES from "../constrant/types";
-import { BoardService } from "../domain/board/board.service";
+import { getDbConnection } from "../../config/typeorm.config";
+import TYPES from "../../constrant/types";
+import { BoardService } from "../../domain/board/board.service";
 
-import { getBoardRepository } from "../domain/board/board.repository";
-import { IBoardRepository } from "../domain/board/interface";
+import { getBoardRepository } from "../../domain/board/board.repository";
+import { IBoardRepository } from "../../domain/board/interface";
 
 export const bindings = new AsyncContainerModule(async (bind) => {
   await getDbConnection();

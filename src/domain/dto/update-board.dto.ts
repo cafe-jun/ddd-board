@@ -1,7 +1,7 @@
 import { IUpdateBoardDto } from "./../board/interface";
 import { ICreateBoardDto } from "../board/interface";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { Board } from "../../entitiy/board.entity";
+import { Board } from "../board/board";
 
 export class UpdateBoardDto implements IUpdateBoardDto {
   id: number;
