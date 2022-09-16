@@ -1,5 +1,6 @@
 import { Board } from "./board";
 import { IRepository } from "../../common/interface";
+
 export interface IBoard {
   id: number;
   title: string;

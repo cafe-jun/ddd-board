@@ -1,4 +1,4 @@
-import { IBoard } from "./interface";
+import { IBoard } from "";
 import {
   createQueryBuilder,
   DeleteResult,
@@ -8,7 +8,7 @@ import {
   Repository,
   UpdateResult,
 } from "typeorm";
-import { Board } from "./board";
+import { Board } from "../../../../domain/board/board";
 
 interface IGetBoardResult {
   id: number;

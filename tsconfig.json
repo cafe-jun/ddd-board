@@ -8,6 +8,11 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@domain/*": ["./src/domain/*"],
+      "@instrstructure/*": ["./src/instrstructure/*"],
+      "@application/*": ["./src/application/*"]
+    }
   }
 }
