@@ -18,7 +18,8 @@ import TYPES from "../../constrant/types";
 import { CreateBoardDto } from "../../domain/dto/create-board.dto";
 import { ICreateBoardDto, IUpdateBoardDto } from "../../domain/board/interface";
 import { DtoBodyValidatorMiddleware } from "../middleware/dto-body-validator.middleware";
-import { GetByIdParams } from "../../common/get-by.params";
+import { GetByIdParams, IGetByIdParams } from "../../common/get-by.params";
+
 @controller("/board")
 export class BoardController implements interfaces.Controller {
   constructor(

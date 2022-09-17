@@ -9,10 +9,12 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
+    "baseUrl": "./",
     "paths": {
-      "@domain/*": ["./src/domain/*"],
-      "@instrstructure/*": ["./src/instrstructure/*"],
-      "@application/*": ["./src/application/*"]
+      "@domain/*": ["src/domain/*"],
+      "@instrstructure/*": ["src/instrstructure/*"],
+      "@application/*": ["src/application/*"]
     }
-  }
+  },
+  "include": ["src/**/*"]
 }
