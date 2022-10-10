@@ -4,7 +4,7 @@ import { NotFoundResult } from "inversify-express-utils/lib/results";
 import { EntityNotFoundError, Repository } from "typeorm";
 import TYPES from "../../constrant/types";
 import { Board } from "./board";
-import { BoardRepository } from "./board.repository";
+import { BoardRepository } from "../../infrastructure/persistence/repository/typeorm@0.2/board.repository";
 
 @injectable()
 export class BoardService {
