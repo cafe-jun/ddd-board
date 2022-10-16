@@ -32,27 +32,27 @@ export class BoardController implements interfaces.Controller {
   }
   @httpGet("/:id")
   public detail(): string {
-    return this.boardService.getDetailBoard();
+    this.boardService.getDetailBoard();
   }
 
-  @httpPost("/", DtoBodyValidatorMiddleware(CreateBoardDto))
-  public createBoard(@requestBody() params: ICreateBoardDto) {
-    return this.boardService.addBoard(params.toEntity());
-  }
-  @httpPut("/:id", DtoBodyValidatorMiddleware(CreateBoardDto))
-  public update(
-    // Param 으로 받기
-    //https://github.com/inversify/InversifyJS/issues/936
-    @requestParam("id") param: IGetByIdParams,
-    @requestBody() boardDto: IUpdateBoardDto,
-    res: express.Response
-  ) {
-    boardDto.setBoardId(param.ID);
-    return this.boardService.updateBoard(boardDto.toEntity());
-  }
+  // @httpPost("/", DtoBodyValidatorMiddleware(CreateBoardDto))
+  // public createBoard(@requestBody() params: ICreateBoardDto) {
+  //   return this.boardService.addBoard(params.toEntity());
+  // }
+  // @httpPut("/:id", DtoBodyValidatorMiddleware(CreateBoardDto))
+  // public update(
+  //   // Param 으로 받기
+  //   //https://github.com/inversify/InversifyJS/issues/936
+  //   @requestParam("id") param: IGetByIdParams,
+  //   @requestBody() boardDto: IUpdateBoardDto,
+  //   res: express.Response
+  // ) {
+  //   boardDto.setBoardId(param.ID);
+  //   return this.boardService.updateBoard(boardDto.toEntity());
+  // }
 
-  @httpDelete("/")
-  public delete(): string {
-    return this.boardService.deleteBoard();
-  }
+  // @httpDelete("/")
+  // public delete(): string {
+  //   return this.boardService.deleteBoard();
+  // }
 }

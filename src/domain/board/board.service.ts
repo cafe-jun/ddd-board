@@ -14,7 +14,6 @@ export class BoardService {
   ) {}
 
   public async getBoard(): Promise<Board[]> {
-    console.log("service here");
     const data = await this.boardRepository.find();
     return data;
   }
@@ -29,23 +28,23 @@ export class BoardService {
     await this.boardRepository.updateRow(dto);
     return dto;
   }
-  public async deleteBoard(id: number): Promise<string> {
-    await this.boardRepository.deleteRow(id);
-    return "success";
-  }
-  public async getBoardList(): Promise<Board[]> {
-    const boards = await this.boardRepository.find();
-    return boards;
-  }
-  public async getDetailBoard(id: number): Promise<Board> {
-    try {
-      const board = await this.boardRepository.getById(id);
-      if (!board) {
-        throw new NotFoundResult("board By id not found row");
-      }
-      return board;
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // public async deleteBoard(id: number): Promise<string> {
+  //   await this.boardRepository.deleteRow(id);
+  //   return "success";
+  // }
+  // public async getBoardList(): Promise<Board[]> {
+  //   const boards = await this.boardRepository.find();
+  //   return boards;
+  // }
+  // public async getDetailBoard(id: number): Promise<Board> {
+  //   try {
+  //     const board = await this.boardRepository.getById(id);
+  //     if (!board) {
+  //       throw new NotFoundResult("board By id not found row");
+  //     }
+  //     return board;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 }
