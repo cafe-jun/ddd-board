@@ -1,4 +1,4 @@
-import { IBoard } from "";
+import { IBoard } from "@domain/board/interface";
 import {
   createQueryBuilder,
   DeleteResult,
@@ -18,7 +18,7 @@ interface IGetBoardResult {
 
 @EntityRepository(Board)
 export class BoardRepository extends Repository<IBoard> {
-  public get(id: number, options?: any): Promise<IBoard> {
+  public get(id: number, options?: any): Promise<Board> {
     return super.findOneOrFail(id, options);
   }
   async addRow(board: Board): Promise<InsertResult> {
