@@ -31,8 +31,9 @@ export class BoardController implements interfaces.Controller {
     return this.boardService.getBoard();
   }
   @httpGet("/:id")
-  public detail(): string {
-    this.boardService.getDetailBoard();
+  public async detail(@requestParam("id") id: number): Promise<string> {
+    await this.boardService.getDetailBoard(id);
+    return "success";
   }
 
   // @httpPost("/", DtoBodyValidatorMiddleware(CreateBoardDto))

@@ -36,15 +36,15 @@ export class BoardService {
   //   const boards = await this.boardRepository.find();
   //   return boards;
   // }
-  // public async getDetailBoard(id: number): Promise<Board> {
-  //   try {
-  //     const board = await this.boardRepository.getById(id);
-  //     if (!board) {
-  //       throw new NotFoundResult("board By id not found row");
-  //     }
-  //     return board;
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  public async getDetailBoard(id: number): Promise<Partial<Board>> {
+    try {
+      const board = await this.boardRepository.getById(id);
+      if (!board) {
+        throw new NotFoundResult();
+      }
+      return board;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
