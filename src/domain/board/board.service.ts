@@ -28,10 +28,10 @@ export class BoardService {
     await this.boardRepository.updateRow(dto);
     return dto;
   }
-  // public async deleteBoard(id: number): Promise<string> {
-  //   await this.boardRepository.deleteRow(id);
-  //   return "success";
-  // }
+  public async deleteBoard(id: number): Promise<string> {
+    await this.boardRepository.deleteRow(id);
+    return "success";
+  }
   // public async getBoardList(): Promise<Board[]> {
   //   const boards = await this.boardRepository.find();
   //   return boards;
